@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+   install:
+    runtime-versions:
+      java: corretto8
+      nodejs: 12
+      
+   pre_build:
+    commands:
+      - git config --global url."https://github.com/".insteadOf git://github.com/
+      - npm install
+      
+   build:
+    commands: 
+      - npm i --save-dev @react-native-community/cli
+      - npm install -g react-native-cli
+    
+artifacts:
+  type: zip
+  files:
+    - README.md
+    - S3.tf
+    - codebuild.tf
+    - pipeline.tf
+    
